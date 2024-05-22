@@ -1,0 +1,15 @@
+.gitignore
+.travis.yml
+Cargo.toml
+README.md
+docs/SubdomainApi.md
+docs/Updateip200Response.md
+docs/Updateip403Response.md
+git_push.sh
+src/apis/configuration.rs
+src/apis/mod.rs
+src/apis/subdomain_api.rs
+src/lib.rs
+src/models/mod.rs
+src/models/updateip_200_response.rs
+src/models/updateip_403_response.rs
