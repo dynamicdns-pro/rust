@@ -15,14 +15,58 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
+/// struct for typed errors of method [`update`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UpdateError {
+    Status400(models::Update400Response),
+    Status403(models::Update403Response),
+    Status404(serde_json::Value),
+    Status422(serde_json::Value),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`updateip`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateipError {
+    Status400(models::Updateip400Response),
     Status403(models::Updateip403Response),
+    Status404(serde_json::Value),
     UnknownValue(serde_json::Value),
 }
 
+
+pub async fn update(configuration: &configuration::Configuration, subdomain: &str, update_request: Option<models::UpdateRequest>) -> Result<models::Update200Response, Error<UpdateError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/update/{subdomain}/record", local_var_configuration.base_path, subdomain=crate::apis::urlencode(subdomain));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&update_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<UpdateError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
 
 pub async fn updateip(configuration: &configuration::Configuration, subdomain: &str, body: Option<serde_json::Value>) -> Result<models::Updateip200Response, Error<UpdateipError>> {
     let local_var_configuration = configuration;

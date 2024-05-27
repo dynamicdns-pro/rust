@@ -22,16 +22,24 @@ dynamicdns-api = { path = "./dynamicdns-api" }
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://dynamicdns.pro/api*
+All URIs are relative to *https://dynamicdns.pro/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*SubdomainApi* | [**update**](docs/SubdomainApi.md#update) | **POST** /update/{subdomain}/record | 
 *SubdomainApi* | [**updateip**](docs/SubdomainApi.md#updateip) | **POST** /update/{subdomain} | update the ip address with the connecting ip address
 
 
 ## Documentation For Models
 
+ - [Update200Response](docs/Update200Response.md)
+ - [Update200ResponseAnyOf](docs/Update200ResponseAnyOf.md)
+ - [Update400Response](docs/Update400Response.md)
+ - [Update403Response](docs/Update403Response.md)
+ - [UpdateRequest](docs/UpdateRequest.md)
  - [Updateip200Response](docs/Updateip200Response.md)
+ - [Updateip200ResponseAnyOf](docs/Updateip200ResponseAnyOf.md)
+ - [Updateip400Response](docs/Updateip400Response.md)
  - [Updateip403Response](docs/Updateip403Response.md)
 
 

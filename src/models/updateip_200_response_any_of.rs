@@ -12,16 +12,16 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct Updateip200Response {
+pub struct Updateip200ResponseAnyOf {
     #[serde(rename = "message")]
     pub message: String,
     #[serde(rename = "ip")]
     pub ip: String,
 }
 
-impl Updateip200Response {
-    pub fn new(message: String, ip: String) -> Updateip200Response {
-        Updateip200Response {
+impl Updateip200ResponseAnyOf {
+    pub fn new(message: String, ip: String) -> Updateip200ResponseAnyOf {
+        Updateip200ResponseAnyOf {
             message,
             ip,
         }
