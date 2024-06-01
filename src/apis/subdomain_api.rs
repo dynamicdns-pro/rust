@@ -20,6 +20,7 @@ use super::{Error, configuration};
 #[serde(untagged)]
 pub enum UpdateError {
     Status400(models::Update400Response),
+    Status401(serde_json::Value),
     Status403(models::Update403Response),
     Status404(serde_json::Value),
     Status422(serde_json::Value),
@@ -31,6 +32,7 @@ pub enum UpdateError {
 #[serde(untagged)]
 pub enum UpdateipError {
     Status400(models::Updateip400Response),
+    Status401(serde_json::Value),
     Status403(models::Updateip403Response),
     Status404(serde_json::Value),
     UnknownValue(serde_json::Value),
@@ -42,7 +44,7 @@ pub async fn update(configuration: &configuration::Configuration, subdomain: &st
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/update/{subdomain}/record", local_var_configuration.base_path, subdomain=crate::apis::urlencode(subdomain));
+    let local_var_uri_str = format!("{}/{subdomain}/record", local_var_configuration.base_path, subdomain=crate::apis::urlencode(subdomain));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -73,7 +75,7 @@ pub async fn updateip(configuration: &configuration::Configuration, subdomain: &
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/update/{subdomain}", local_var_configuration.base_path, subdomain=crate::apis::urlencode(subdomain));
+    let local_var_uri_str = format!("{}/{subdomain}", local_var_configuration.base_path, subdomain=crate::apis::urlencode(subdomain));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {

@@ -4,8 +4,8 @@ All URIs are relative to *https://dynamicdns.pro/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**update**](SubdomainApi.md#update) | **POST** /update/{subdomain}/record | 
-[**updateip**](SubdomainApi.md#updateip) | **POST** /update/{subdomain} | update the ip address with the connecting ip address
+[**update**](SubdomainApi.md#update) | **POST** /{subdomain}/record | 
+[**updateip**](SubdomainApi.md#updateip) | **POST** /{subdomain} | update the ip address with the connecting ip address
 
 
 

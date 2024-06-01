@@ -26,8 +26,8 @@ All URIs are relative to *https://dynamicdns.pro/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SubdomainApi* | [**update**](docs/SubdomainApi.md#update) | **POST** /update/{subdomain}/record | 
-*SubdomainApi* | [**updateip**](docs/SubdomainApi.md#updateip) | **POST** /update/{subdomain} | update the ip address with the connecting ip address
+*SubdomainApi* | [**update**](docs/SubdomainApi.md#update) | **POST** /{subdomain}/record | 
+*SubdomainApi* | [**updateip**](docs/SubdomainApi.md#updateip) | **POST** /{subdomain} | update the ip address with the connecting ip address
 
 
 ## Documentation For Models
